@@ -1,0 +1,36 @@
+<ion-content fullscreen>
+  <ion-card>
+    <ion-card-content style="text-align: center;">
+      <ion-avatar>
+        <img src="./../../assets/avatar.jpg">
+      </ion-avatar>
+
+      <ion-item>
+        <ion-label style="display: none;" position="floating">Full name</ion-label>
+        <ion-input type='text'>Tran Sy Cao
+        </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label style="display: none;"  position="floating">Phone</ion-label>
+        <ion-input type='number'> 0948856496
+        </ion-input>
+
+      </ion-item>
+      <ion-item>
+        <ion-label style="display: none;"  position="floating">Email</ion-label>
+        <ion-input typle='email'> cao.ts@gmail.com
+        </ion-input>
+      </ion-item>
+      <div>
+        <ion-button 
+        [routerLink]="['/user']"
+        shape="round" class="btn-social" style="background-color: #333 !important;">
+        Edit  <ion-icon name="create-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-card-content>
+    
+  </ion-card>
+
+
+</ion-content>

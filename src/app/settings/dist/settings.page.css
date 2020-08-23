@@ -1,0 +1,18 @@
+ion-content {
+  background: radial-gradient(#0000002e, transparent);
+  --background: none;
+}
+
+ion-toolbar {
+  --background: none;
+}
+
+* {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.title-header {
+  font-size: 20px;
+  color: #333;
+  font-weight: 600;
+}
