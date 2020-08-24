@@ -1,0 +1,33 @@
+<ion-content fullscreen>
+  <ion-card>
+    <ion-card-content style="text-align: center;">
+      <ion-avatar>
+        <img src="./../../assets/avatar.jpg">
+      </ion-avatar>
+
+      <ion-item >
+        <ion-label style="display: none;" position="floating">Full name</ion-label>
+        <ion-input type='text' [readonly]="!isEdit"  [(ngModel)]="name" [ngStyle]="{'color': isEdit? '#333': 'red'}"></ion-input>
+      </ion-item>
+      <ion-item >
+        <ion-label style="display: none;"  position="floating">Phone</ion-label>
+        <ion-input type='text' [readonly]="!isEdit"  [(ngModel)]="phone" [ngStyle]="{'color': isEdit? '#333': 'red'}"></ion-input>
+
+      </ion-item >
+      <ion-item >
+        <ion-label style="display: none;"  position="floating">Email</ion-label>
+        <ion-input typle='email' [readonly]="!isEdit" [(ngModel)]="email" [ngStyle]="{'color': isEdit? '#333': 'red'}"></ion-input>
+      </ion-item>
+      <div>
+        <ion-button 
+        (click)="isEditingFunc()"s
+        shape="round" class="btn-social" style="background-color: #333 !important;">
+        {{isEdit ? 'Save' : 'Edit'}}  <ion-icon name="create-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-card-content>
+    
+  </ion-card>
+
+
+</ion-content>

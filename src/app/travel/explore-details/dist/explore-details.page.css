@@ -1,0 +1,146 @@
+ion-content {
+  --background: none;
+  background-image: url(https://images.unsplash.com/photo-1510832303954-cc30cbf2b8db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80);
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+ion-toolbar {
+  --background: none;
+}
+
+* {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.title-header {
+  font-size: 26px;
+  color: #333;
+  font-weight: 600;
+}
+
+.button-left-header {
+  font-size: 36px;
+  color: #333;
+}
+
+.padding-parent {
+  padding: 15px;
+}
+
+.avatar-header {
+  width: 80%;
+  height: 80%;
+}
+
+.container {
+  margin: 0 15px;
+  box-shadow: 0 2px 5px 2px rgba(0, 0, 0, 0.18);
+  border-radius: 20px;
+  background-color: #fff;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.container .wrapper-img {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.container .wrapper-img img {
+  width: 100%;
+  height: 100%;
+  transition: 0.2s linear;
+}
+
+.container .wrapper-img:hover img {
+  transform: scale(1.1);
+}
+
+.container .wrapper-content .content-travel,
+.container .wrapper-content {
+  padding: 10px;
+}
+
+.container .wrapper-content .date-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.container .wrapper-content .date-price .date {
+  color: gray;
+}
+
+.container .wrapper-content .date-price .price {
+  color: #ffc409;
+  font-weight: 600;
+}
+
+.container .wrapper-content .content-travel .title {
+  font-size: 24px;
+  color: #ffc409;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.container .wrapper-content .content-travel .content {
+  line-height: 1.6;
+}
+
+.more {
+  color: #ffc409;
+  font-weight: 600;
+}
+
+.time-line {
+  padding: 15px;
+}
+
+.time-line-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.time-line-details .date {
+  color: #ffc409;
+  font-weight: 600;
+  margin: 0 10px;
+}
+
+.time-line-details .icon {
+  padding: 15px;
+  border-radius: 50%;
+  background-color: #ffc409;
+  position: relative;
+}
+
+.time-line-details .icon-close {
+  border-radius: 50%;
+  background-color: gray;
+  position: relative;
+  padding: 15px;
+}
+
+.time-line-details .icon::after {
+  content: "";
+  position: absolute;
+  bottom: -100%;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  background-color: #ffc409;
+}
+
+.time-line-details .content {
+  text-align: center;
+  padding: 10px;
+  background-color: rgba(255, 196, 9, 0.46);
+  color: #333;
+  border-radius: 20px;
+}

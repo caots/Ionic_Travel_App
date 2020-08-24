@@ -1,0 +1,51 @@
+ion-content {
+  --background: none;
+  background-image: url(https://images.unsplash.com/photo-1521575363954-393ae1439d33?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=582&q=80);
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+ion-card {
+  height: 86vh;
+  background: #ffffffc7;
+}
+
+ion-toolbar {
+  --background: none;
+}
+
+* {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.title-login {
+  text-align: center;
+  color: #ffc409;
+  z-index: 2;
+}
+
+ion-icon {
+  font-size: 18px;
+  margin: 0 10px;
+  color: white;
+}
+
+ion-avatar {
+  margin: auto;
+  width: 150px;
+  height: 150px;
+  margin-bottom: 40px;
+}
+
+ion-button {
+  --background:none;
+  --background-activated: none;
+  margin-top: 40px;
+}
+
+.btn-social {
+  border-radius: 20px;
+  width: 50%;
+  font-weight: 500;
+}
