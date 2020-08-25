@@ -5,23 +5,41 @@
     </ion-card-header>
 
     <ion-card-content style="text-align: center;">
-      <ion-item>
-        <ion-label position="floating">Email or Phone</ion-label>
-        <ion-input ></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Password</ion-label>
-        <ion-input type='password'></ion-input>
-      </ion-item>
-      
-      <ion-card-subtitle style="margin: 30px 0"><u>Sign in ?</u> if you don't have account
-      </ion-card-subtitle>
-      <div>
-        <ion-button 
-        [routerLink]="['/user']"
-        shape="round" class="btn-social" style="background-color: #333 !important;">Login
-        </ion-button>
-      </div>
+      <form [formGroup]="formLogin" >
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="email" formControlName="email" name="email" class="form-controll"></ion-input>
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.email">
+              <div class="error-message"
+                *ngIf="formLogin.get('email').hasError(validation.type) && (formLogin.get('email').dirty || formLogin.get('email').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </div>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type='password' formControlName="password" name="password" class="form-controll"></ion-input>
+          <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.password">
+              <div class="error-message"
+                *ngIf="formLogin.get('password').hasError(validation.type) && (formLogin.get('password').dirty || formLogin.get('password').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </div>
+        </ion-item>
+
+        <ion-card-subtitle style="margin: 30px 0"><u>Sign in ?</u> if you don't have account
+        </ion-card-subtitle>
+        <div>
+          <ion-button shape="round" class="btn-social" [disabled]="!formLogin.valid"
+            style="background-color: #333 !important;" (click)="loginForm()">Login
+          </ion-button>
+        </div>
+      </form>
       <div>
         <ion-button shape="round" class="btn-social" style="background-color: blue !important;">Login with Facebook
         </ion-button>

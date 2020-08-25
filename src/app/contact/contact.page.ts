@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router'
-import { CallNumber } from '@ionic-native/call-number/ngx';
+// import { CallNumber } from '@ionic-native/call-number/ngx';
+// import { Contacts } from '@ionic-native/contacts';
 
 @Component({
   selector: 'app-contact',
@@ -11,16 +12,21 @@ export class ContactPage implements OnInit {
 
   constructor(
     private router: Router,
-    private callNumber: CallNumber
+    // public callNumber: CallNumber
   ) { }
 
   ngOnInit() {
   }
 
   callNow(number) {
-    this.callNumber.callNumber(number, true)
-      .then(res => console.log('Launched dialer!', res))
-      .catch(err => console.log('Error launching dialer', err));
+    // console.log(number);
+    
+    // this.callNumber.callNumber(number, true)
+    //   .then(res => console.log('Launched dialer!', res))
+    //   .catch(err => console.log('Error launching dialer', err));
+
+    //href = "tel: xxxx xxx xxx"
+    window.location.href=`tel: ${number}`
   }
 
   goBack() {

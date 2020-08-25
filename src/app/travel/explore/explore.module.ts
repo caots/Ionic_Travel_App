@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { ExplorePageRoutingModule } from './explore-routing.module';
-
+import  {ShareSocialService} from './../../services/share-social.service'
 import { ExplorePage } from './explore.page';
 
 @NgModule({
@@ -15,6 +15,7 @@ import { ExplorePage } from './explore.page';
     IonicModule,
     ExplorePageRoutingModule
   ],
+  providers:[ShareSocialService],
   declarations: [ExplorePage]
 })
 export class ExplorePageModule {}

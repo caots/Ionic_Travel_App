@@ -4,6 +4,7 @@ import { TravelService } from './../../services/travel.service'
 import { Travel } from '../../interfaces/travel'
 import { Subscription } from 'rxjs'
 
+import {AuthService} from './../../services/auth.service'
 
 @Component({
   selector: 'app-explore-details',
@@ -16,16 +17,32 @@ export class ExploreDetailsPage implements OnInit {
     id: 0
   }
   isLoading: boolean = true;
-  subcription: Subscription
+  subcription: Subscription;
+  checkLogin: boolean = false
 
   constructor(
     private activateRouter: ActivatedRoute,
     private router: Router,
-    private travelService: TravelService
+    private travelService: TravelService,
+    private auth : AuthService
   ) { }
 
   ngOnInit() {
     this.getTravelById();
+    if(this.auth.getUserInfo()){
+      this.checkLogin = true;
+    }else{
+      this.checkLogin = false;
+    }
+  }
+
+  ngDoCheck(): void {
+    if(this.auth.getUserInfo()){
+      this.checkLogin = true;
+    } else{
+      this.checkLogin = false;
+    }  
+    // console.log(this.checkLogin);
   }
 
   doRefresh(event) {

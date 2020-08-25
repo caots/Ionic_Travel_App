@@ -2,10 +2,14 @@ import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { TravelService } from '../../services/travel.service'
 import { Travel } from '../../interfaces/travel'
 
-import { filter, debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
+// import { filter, debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
 import { Subscription } from 'rxjs'
-import { MenuController } from '@ionic/angular';
+import { MenuController, IonSearchbar } from '@ionic/angular';
 
+import { ShareSocialService } from './../../services/share-social.service'
+// import { ActionSheetController } from "@ionic/angular";
+
+import { AuthService } from './../../services/auth.service'
 
 @Component({
   selector: 'app-explore',
@@ -13,6 +17,8 @@ import { MenuController } from '@ionic/angular';
   styleUrls: ['./explore.page.scss'],
 })
 export class ExplorePage implements OnInit, OnDestroy {
+
+  isSearching: boolean = false
 
   travel: Travel = {
     id: 0
@@ -25,19 +31,34 @@ export class ExplorePage implements OnInit, OnDestroy {
   suggestedTravels: Travel[];
   subscribe: Subscription;
   isLoading: boolean = true;
+  txtSearchBox: string;
+  checkLogin: boolean = false;
 
-  // slideOpts = {
-  //   initialSlide: 1,
-  //   speed: 400
-  // };
+  shareing = {
+    message: '',
+    image: '',
+    url: '',
+    subject: ''
+  }
 
   constructor(
     private travelService: TravelService,
-    private menu: MenuController
+    private menu: MenuController,
+    private auth: AuthService,
+    private _social: ShareSocialService,
+
   ) { }
 
   ngOnInit() {
     this.getAllTravel();
+  }
+
+  ngDoCheck(): void {
+    if (this.auth.getUserInfo()) {
+      this.checkLogin = true;
+    } else {
+      this.checkLogin = false;
+    }
   }
 
   openMenuLeft() {
@@ -74,6 +95,11 @@ export class ExplorePage implements OnInit, OnDestroy {
         this.travelService.handlerError(err)
       }
     )
+    if (this.auth.getUserInfo()) {
+      this.checkLogin = true;
+    } else {
+      this.checkLogin = false;
+    }
   }
 
   getTravelById(id: number) {
@@ -87,7 +113,6 @@ export class ExplorePage implements OnInit, OnDestroy {
     )
   }
 
-
   getIndex(id: number) {
     let rs = 0;
     this.listTravel.forEach((travle, index) => {
@@ -98,13 +123,18 @@ export class ExplorePage implements OnInit, OnDestroy {
 
   loadData(event) {
     setTimeout(() => {
-      let lengthAfter = this.suggestedTravels.length + 4
-      event.target.complete();
-      if (lengthAfter < this.listTravel.length) {
-        for (let i = lengthAfter - 4; i < lengthAfter; i++) {
-          if (i < this.listTravel.length) {
-            this.suggestedTravels.push(this.listTravel[i])
+      if (!this.isSearching) {
+        event.target.disabled = false;
+        let lengthAfter = this.suggestedTravels.length + 4
+        event.target.complete();
+        if (lengthAfter < this.listTravel.length) {
+          for (let i = lengthAfter - 4; i < lengthAfter; i++) {
+            if (i < this.listTravel.length) {
+              this.suggestedTravels.push(this.listTravel[i])
+            }
           }
+        } else {
+          event.target.disabled = true;
         }
       } else {
         event.target.disabled = true;
@@ -123,6 +153,24 @@ export class ExplorePage implements OnInit, OnDestroy {
     if (this.subscribe) {
       this.subscribe.unsubscribe();
     }
+  }
+
+
+
+  txtSearch(event) {
+    this.suggestedTravels = []
+    this.isSearching = true;
+    let tmpSearch = event.detail.value;
+    this.listTravel.forEach(data => {
+      if (data.title.search(tmpSearch) >= 0) {
+        this.suggestedTravels.push(data);
+      }
+    })
+    if (tmpSearch === '') {
+      this.isSearching = false
+      this.getAllTravel()
+    }
+    console.log(this.suggestedTravels);
   }
 
   slideOptsHot = {
@@ -369,5 +417,55 @@ export class ExplorePage implements OnInit, OnDestroy {
       },
     }
   }
+
+  //share social
+
+  shareFacebook = () => {
+    this._social.share(
+      "com.facebook.katana",
+      "Facebook",
+      "facebook",
+      this.shareing.message,
+      this.shareing.subject,
+      this.shareing.image,
+      this.shareing.url
+    );
+  }
+  shareInstagram = () => {
+    this._social.share(
+      "com.instagram.android",
+      "Instagram",
+      "instagram",
+      this.shareing.message,
+      this.shareing.subject,
+      this.shareing.image,
+      this.shareing.url
+    );
+  }
+
+  shareTwitter = () => {
+    this._social.share(
+      "com.twitter.android",
+      "Twitter",
+      "twitter",
+      this.shareing.message,
+      this.shareing.subject,
+      this.shareing.image,
+      this.shareing.url
+    );
+  }
+
+  shareGmail = () => {
+    this._social.share(
+      "com.gmail.android",
+      "Gmail",
+      "gmail",
+      this.shareing.message,
+      this.shareing.subject,
+      this.shareing.image,
+      this.shareing.url
+    );
+  }
+
 
 }

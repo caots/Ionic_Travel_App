@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
+import {AuthService} from './../services/auth.service'
+import {IUser} from './../interfaces/user'
 
 @Component({
   selector: 'app-user',
@@ -10,14 +12,16 @@ export class UserPage implements OnInit {
 
   isEdit : boolean = false;
   name : string = 'Tran Sy Cao';
-  email : string = 'Honghoang123@gmail.com';
+  email : string ="exm@gmail.com";
   phone : string = '0948856496';
 
   constructor(
-    private toastController: ToastController
+    private toastController: ToastController,
+    private auth : AuthService
   ) { }
 
-  ngOnInit() {
+  ngOnInit() {    
+    this.email = this.auth.getUserInfo().email;
   }
 
   async isEditingFunc(){
@@ -25,6 +29,11 @@ export class UserPage implements OnInit {
     if(!this.isEdit){
       await this.presentToast()
     } 
+  }
+
+  logout(){
+    this.auth.logOut()
+
   }
 
   async presentToast() {

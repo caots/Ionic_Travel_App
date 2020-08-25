@@ -8,7 +8,8 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { ContactPageRoutingModule } from './contact-routing.module';
-import { CallNumber } from '@ionic-native/call-number/ngx';
+// import { CallNumber } from '@ionic-native/call-number';
+import { Contacts } from '@ionic-native/contacts';
 
 import { ContactPage } from './contact.page';
 
@@ -22,7 +23,8 @@ import { ContactPage } from './contact.page';
   providers: [
     StatusBar,
     SplashScreen,
-    CallNumber,
+    // CallNumber,
+    Contacts,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   declarations: [ContactPage]

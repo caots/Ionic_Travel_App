@@ -4,12 +4,12 @@
       <ion-icon name="chevron-back-outline"></ion-icon>
     </ion-buttons>
     <ion-title class="title-header">About tour</ion-title>
-    <ion-avatar slot="end" [routerLink]="['/login']" [ngStyle]="{
+    <ion-avatar slot="end" [routerLink]="checkLogin ? ['/user'] : ['/login']" [ngStyle]="{
       'display':'flex',
       'justify-content':'center',
       'align-items':'center'
     }">
-      <img src="../../../assets/avatar.jpg" class="avatar-header">
+    <img [src]=" checkLogin ? '../../../assets/avatar.jpg' : '../../../assets/user.png'" class="avatar-header">
     </ion-avatar>
   </ion-toolbar>
 

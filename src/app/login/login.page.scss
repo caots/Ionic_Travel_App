@@ -8,7 +8,7 @@ ion-content {
 
  ion-card{
     height: 86vh;
-    background: #ffffffc7;
+    background: #d8d8d8c7;
 }
 
 
@@ -38,4 +38,8 @@ ion-button{
     border-radius: 20px;
     width: 90%;
     font-weight: 500;
+}
+
+.error-message{
+    color: red;
 }

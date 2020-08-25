@@ -20,9 +20,13 @@
       </ion-item>
       <div>
         <ion-button 
-        (click)="isEditingFunc()"s
+        (click)="isEditingFunc()"
         shape="round" class="btn-social" style="background-color: #333 !important;">
         {{isEdit ? 'Save' : 'Edit'}}  <ion-icon name="create-outline"></ion-icon>
+        </ion-button>
+        <ion-button 
+        (click)="logout()"shape="round" class="btn-social" style="background-color: red !important;">
+        Logout<ion-icon name="person-remove-outline"></ion-icon>
         </ion-button>
       </div>
     </ion-card-content>

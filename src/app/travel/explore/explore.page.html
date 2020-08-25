@@ -5,16 +5,16 @@
       <ion-icon name="finger-print-outline"></ion-icon>
     </ion-buttons>
     <ion-title class="title-header">Tour List</ion-title>
-    <ion-avatar slot="end" [routerLink]="['/login']" [ngStyle]="{
+    <ion-avatar slot="end" [routerLink]="checkLogin ? ['/user'] : ['/login']" [ngStyle]="{
         'display':'flex',
         'justify-content':'center',
         'align-items':'center'
       }">
-      <img src="../../../assets/avatar.jpg" class="avatar-header">
+      <img [src]=" checkLogin ? '../../../assets/avatar.jpg' : '../../../assets/user.png'" class="avatar-header">
     </ion-avatar>
   </ion-toolbar>
   <ion-toolbar>
-    <ion-searchbar debounce="500"></ion-searchbar>
+    <ion-searchbar debounce="500" (ionChange)="txtSearch($event)" #searchBar></ion-searchbar>
   </ion-toolbar>
 
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
@@ -55,7 +55,7 @@
 
   <p class="title-list">Normal searches</p>
 
-  <ion-row style="margin-bottom: 5px">
+  <ion-row style="margin-bottom: 20px">
     <ion-col size="6" *ngFor="let travel of suggestedTravels">
       <div class="wrapper-travel">
         <div class="travel" [routerLink]="['/travel', travel.id]">
@@ -85,16 +85,24 @@
       <ion-icon name="share-social-sharp"></ion-icon>
     </ion-fab-button>
     <ion-fab-list side="end">
-      <ion-fab-button color="light">
+      <ion-fab-button color="light" 
+        (click)="shareFacebook()"
+        >
         <ion-icon name="logo-facebook"></ion-icon>
       </ion-fab-button>
-      <ion-fab-button color="light">
+      <ion-fab-button color="light"
+      (click)="shareTwitter()"
+       >
         <ion-icon name="logo-twitter"></ion-icon>
       </ion-fab-button>
-      <ion-fab-button color="light">
-        <ion-icon name="logo-vimeo"></ion-icon>
+      <ion-fab-button color="light" 
+      (click)="shareInstagram()"
+      >
+        <ion-icon name="logo-instagram"></ion-icon>
       </ion-fab-button>
-      <ion-fab-button color="light">
+      <ion-fab-button color="light"
+      (click)="shareGmail()"
+       >
         <ion-icon name="logo-google"></ion-icon>
       </ion-fab-button>
     </ion-fab-list>
